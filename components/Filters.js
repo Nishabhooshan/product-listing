@@ -1,4 +1,3 @@
-
 import React, { useContext } from 'react';
 import { AppContext } from '@/components/AppContext';
 
@@ -8,6 +7,8 @@ const Filters = () => {
     setCategoryFilter,
     priceRange,
     setPriceRange,
+    priceCategory,
+    setPriceCategory,
   } = useContext(AppContext);
 
   const categories = [
@@ -34,12 +35,13 @@ const Filters = () => {
     setSearch(event.target.value);
   };
 
-  const handlePriceChange = (value) => {
-    setPriceRange({ ...priceRange, max: value });
+  const handlePriceChange = (event) => {
+    setPriceRange({ ...priceRange, max: parseInt(event.target.value, 10) });
   };
 
   const handlePriceCategoryChange = (event) => {
     const selectedPriceCategory = event.target.value;
+    setPriceCategory(selectedPriceCategory);
     switch (selectedPriceCategory) {
       case 'highest':
         setPriceRange({ ...priceRange, max: 1000 });
@@ -94,7 +96,7 @@ const Filters = () => {
           min="0"
           max="1000"
           value={priceRange.max}
-          onChange={(e) => handlePriceChange(e.target.value)}
+          onChange={handlePriceChange}
         />
         <span>${priceRange.max}</span>
       </div>
@@ -106,6 +108,7 @@ const Filters = () => {
           id="priceCategory"
           name="priceCategory"
           className="block w-full p-2 border border-gray-300 rounded-lg focus:ring focus:ring-blue-200"
+          value={priceCategory}
           onChange={handlePriceCategoryChange}
         >
           <option value="">Select Price Category</option>
