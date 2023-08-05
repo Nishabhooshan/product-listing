@@ -2,8 +2,58 @@ import React, { useContext, useState } from "react";
 import { AppContext } from "@/components/AppContext";
 
 const Navbar = () => {
-  const { search, setSearch } = useContext(AppContext);
-  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const {
+    search,
+    setSearch,
+    setCategoryFilter,
+    priceRange,
+    setPriceRange,
+    priceCategory,
+    setPriceCategory,
+  } = useContext(AppContext);
+
+  const categories = [
+    "All",
+    "mobile",
+    "laptop",
+    "PC",
+    "Accessories",
+    "Headphones",
+    "watch",
+  ];
+
+  const priceCategories = [
+    { label: "Highest Price", value: "highest" },
+    { label: "Lowest Price", value: "lowest" },
+  ];
+
+  const handleCategoryChange = (event) => {
+    const selectedCategory = event.target.value;
+    setCategoryFilter(selectedCategory === "All" ? "" : selectedCategory);
+  };
+
+  const handleSearchChange = (event) => {
+    setSearch(event.target.value);
+  };
+
+  const handlePriceChange = (event) => {
+    setPriceRange({ ...priceRange, max: parseInt(event.target.value, 10) });
+  };
+
+  const handlePriceCategoryChange = (event) => {
+    const selectedPriceCategory = event.target.value;
+    setPriceCategory(selectedPriceCategory);
+    switch (selectedPriceCategory) {
+      case "highest":
+        setPriceRange({ ...priceRange, max: 1000 });
+        break;
+      case "lowest":
+        setPriceRange({ ...priceRange, max: 100 });
+        break;
+      default:
+        break;
+    }
+  };
 
   return (
     <>
@@ -20,11 +70,7 @@ const Navbar = () => {
             </span>
           </a>
           <div className="flex md:order-2">
-            <div
-              className={`relative ${
-                isSearchOpen ? "block" : "hidden"
-              } md:block`}
-            >
+            <div className={`relative md:block`}>
               <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                 <svg
                   className="w-4 h-4 text-gray-500 dark:text-gray-400"
@@ -52,6 +98,50 @@ const Navbar = () => {
                 onChange={(e) => setSearch(e.target.value)}
               />
             </div>
+          </div>
+          <div>
+            <select
+              id="category"
+              name="category"
+              className="block w-full p-2  border-gray-300 rounded-lg focus:ring focus:ring-blue-200 dark:bg-gray-700 dark:text-white"
+              onChange={handleCategoryChange}
+            >
+              {categories.map((category) => (
+                <option key={category} value={category}>
+                  {category}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div>
+            <input
+              type="range"
+              id="priceRange"
+              name="priceRange"
+              min="0"
+              max="1000"
+              value={priceRange.max}
+              onChange={handlePriceChange}
+            />
+            <span className="dark:text-white">${priceRange.max}</span>
+          </div>
+
+          <div>
+            <select
+              id="priceCategory"
+              name="priceCategory"
+              className="block w-full p-2  border-gray-300 rounded-lg focus:ring focus:ring-blue-200 dark:bg-gray-700 dark:text-white"
+              value={priceCategory}
+              onChange={handlePriceCategoryChange}
+            >
+              <option value="">Select Price Category</option>
+              {priceCategories.map((option) => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+            </select>
           </div>
         </div>
       </nav>
