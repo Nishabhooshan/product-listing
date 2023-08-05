@@ -13,12 +13,12 @@ const Filters = () => {
 
   const categories = [
     "All",
-    "Mobile",
-    "Laptop",
+    "mobile",
+    "laptop",
     "PC",
     "Accessories",
     "Headphones",
-    "Smartwatches",
+    "watch",
   ];
 
   const priceCategories = [
@@ -55,9 +55,9 @@ const Filters = () => {
   };
 
   return (
-    <div className="space-y-4">
+    <div className="bg-gray-200 p-4 pt-8 w-1/6">
       <div>
-        <label htmlFor="category" className="block font-medium">
+        <label htmlFor="category" className="block font-medium pt-4">
           Category
         </label>
         <select
@@ -74,19 +74,7 @@ const Filters = () => {
         </select>
       </div>
       <div>
-        <label htmlFor="search" className="block font-medium">
-          Search
-        </label>
-        <input
-          type="text"
-          id="search"
-          name="search"
-          className="block w-full p-2 border border-gray-300 rounded-lg focus:ring focus:ring-blue-200"
-          onChange={handleSearchChange}
-        />
-      </div>
-      <div>
-        <label htmlFor="priceRange" className="block font-medium">
+        <label htmlFor="priceRange" className="block font-medium pb-4 pt-4">
           Price Range
         </label>
         <input
@@ -101,7 +89,7 @@ const Filters = () => {
         <span>${priceRange.max}</span>
       </div>
       <div>
-        <label htmlFor="priceCategory" className="block font-medium">
+        <label htmlFor="priceCategory" className="block font-medium pt-4">
           Price Category
         </label>
         <select

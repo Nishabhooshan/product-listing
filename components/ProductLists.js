@@ -44,7 +44,7 @@ const ProductLists = () => {
               <a href="#">
                 <img
                   className="p-8 rounded-t-lg"
-                  src="https://cdn.wallpapersafari.com/21/94/uNAl3O.jpg"
+                  src={product.image}
                   alt="product"
                 />
               </a>
@@ -73,8 +73,8 @@ const ProductLists = () => {
       </div>
       <div className="flex justify-center mt-8">
         <ReactPaginate
-          previousLabel={'←'}
-          nextLabel={'→'}
+          previousLabel={'Previous'}
+          nextLabel={'Next'}
           pageCount={pageCount}
           onPageChange={changePage}
           containerClassName={'pagination flex space-x-2'}
@@ -86,7 +86,6 @@ const ProductLists = () => {
           }
           disabledClassName={'pagination__link--disabled'}
           activeClassName={'pagination__link--active bg-blue-500 text-white'}
-          pageClassName={'pagination__page'}
           breakClassName={'pagination__break'}
           pageLinkClassName={'pagination__page-link'}
           pageRangeDisplayed={3}

@@ -14,9 +14,9 @@ export default function Home() {
       <Navbar className="fixed top-0 left-0 w-1/6 z-10" />
 
       <div className="flex flex-row pt-16">
-        <div className="bg-gray-200 h-full p-4 pt-8 w-1/6">
+        
           <Filters />
-        </div>
+      
 
         <div className="flex flex-wrap justify-center gap-4 pt-8 w-5/6 ml-1/6">
           <ProductLists />
