@@ -59,16 +59,12 @@ const Navbar = () => {
     <>
       <nav className="fixed top-0 left-0 w-full bg-white border-gray-200 dark:bg-gray-900 z-10">
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-          <a href="Oliver" className="flex items-center">
-            <img
-              src="./assets/logo.jpg"
-              className="h-14 mr-3"
-              alt="Oliver Logo"
-            />
-            <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
-              Oliver
-            </span>
-          </a>
+          <img
+            src="./assets/logo.jpg"
+            className="h-14 mr-3"
+            alt="Oliver Logo"
+          />
+
           <div className="flex md:order-2">
             <div className={`relative md:block`}>
               <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
